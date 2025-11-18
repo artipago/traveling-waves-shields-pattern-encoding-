@@ -1,5 +1,5 @@
 function startingFunction()
-
+    rng(110)
     %% defining parameters
     nNodesX = 15;
     nNodesY = 10;
