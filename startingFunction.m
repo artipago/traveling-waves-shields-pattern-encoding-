@@ -1,8 +1,8 @@
 function startingFunction()
     rng(110)
     %% defining parameters
-    nNodesX = 15;
-    nNodesY = 10;
+    nNodesY = 15;
+    nNodesX = 10;
     nTimeSteps = 200;
     
     epsilon = 0.1;
@@ -14,21 +14,21 @@ function startingFunction()
     for kk=1:30 % several iterations
         kk
         %% initializing
-        activityGridTraveling = zeros(nNodesY,nNodesX,nTimeSteps); % space x space x time
-        activityGridTraveling(:,:,1) = round(rand(nNodesY,nNodesX)-sparsityThreshold); %initializing the first time step of the activityGridTravelling
+        activityGridTraveling = zeros(nNodesX,nNodesY,nTimeSteps); % space x space x time
+        activityGridTraveling(:,:,1) = round(rand(nNodesX,nNodesY)-sparsityThreshold); %initializing the first time step of the activityGridTravelling
         activityGridTraveling(activityGridTraveling<0)=0;
         cleanTraveling=activityGridTraveling;
         weightVectorTraveling = zeros(size(activityGridTraveling,1),size(activityGridTraveling,1)); %neuron x neuron x space(column) x time
-        weightVectorTraveling = repmat(weightVectorTraveling,[1 1 nNodesX nTimeSteps]); %neuron x neuron x space(column) x time
+        weightVectorTraveling = repmat(weightVectorTraveling,[1 1 nNodesY nTimeSteps]); %neuron x neuron x space(column) x time
         weightVectorTraveling = weightVectorTraveling + epsilon*rand(size(weightVectorTraveling));
     
     
-        activityGridStatic = zeros(nNodesY,nNodesX,nTimeSteps); % space x space x time
-        activityGridStatic(:,:,1) = round(rand(nNodesY,nNodesX)-sparsityThreshold); %initializing the first time step of the activityGridTravelling
+        activityGridStatic = zeros(nNodesX,nNodesY,nTimeSteps); % space x space x time
+        activityGridStatic(:,:,1) = round(rand(nNodesX,nNodesY)-sparsityThreshold); %initializing the first time step of the activityGridTravelling
         activityGridStatic(activityGridStatic<0)=0;
         cleanStatic=activityGridStatic;
         weightVectorStatic = zeros(size(activityGridStatic,1),size(activityGridStatic,1)); %neuron x neuron x space(column) x time
-        weightVectorStatic = repmat(weightVectorStatic,[1 1 nNodesX nTimeSteps]); %neuron x neuron x space(column) x time
+        weightVectorStatic = repmat(weightVectorStatic,[1 1 nNodesY nTimeSteps]); %neuron x neuron x space(column) x time
         weightVectorStatic = weightVectorStatic + epsilon*rand(size(weightVectorStatic));
     
     
@@ -37,10 +37,10 @@ function startingFunction()
     
             if tt==100 %changing the memory item
                 
-                newRandomItems = round(rand(nNodesY,numberOfNewItem)-sparsityThreshold); %initializing the first time step of the activityGridTravelling
+                newRandomItems = round(rand(nNodesX,numberOfNewItem)-sparsityThreshold); %initializing the first time step of the activityGridTravelling
                 newRandomItems(newRandomItems<0)=0;
     
-                positionRandomItems = randi(nNodesX,[1 numberOfNewItem]);
+                positionRandomItems = randi(nNodesY,[1 numberOfNewItem]);
     
                 activityGridTraveling(:,positionRandomItems,tt)=newRandomItems;
                 activityGridStatic(:,positionRandomItems,tt)=newRandomItems;
