@@ -1,8 +1,7 @@
-function newWeightVector = updatingTheWeights(weightVectorTravelling,v1,v2)
+function newWeightVector = updatingTheWeights(weightVectorTravelling,v1,v2, deltaIncrease)
 
 thresholdSpikes = 1; %threshold to consider the active states
 
-deltaIncrease = 0.1;
 tauDecay = 0.9;
 
 spike1 = find(v1>=thresholdSpikes);
